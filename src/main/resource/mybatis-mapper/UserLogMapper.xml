@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hive.dao.UserLogMapper">
+
+
+    <resultMap type="com.hive.entities.Chart" id="resultMapChart">
+        <result property="action" column="action"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getChart" resultMap="resultMapChart">
+			select action,count(*) num from user_log group by action desc
+    </select>
+
+    <resultMap type="com.hive.entities.Chart1" id="resultMapChart1">
+        <result property="gender" column="gender"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getChart1" resultMap="resultMapChart1">
+			select gender,count(*) num from user_log group by gender desc
+    </select>
+
+    <resultMap type="com.hive.entities.Chart2" id="resultMapChart2">
+        <result property="gender" column="gender"/>
+        <result property="age_range" column="age_range"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getChart2" resultMap="resultMapChart2">
+			select gender,age_range,count(*) num from user_log group by gender,age_range desc
+    </select>
+
+    <resultMap type="com.hive.entities.Chart3" id="resultMapChart3">
+        <result property="cat_id" column="cat_id"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getChart3" resultMap="resultMapChart3">
+			select cat_id,count(*) num from user_log group by cat_id order by count(*) desc limit 5
+    </select>
+
+    <resultMap type="com.hive.entities.Chart4" id="resultMapChart4">
+        <result property="province" column="province"/>
+        <result property="num" column="num"/>
+    </resultMap>
+    <select id="getChart4" resultMap="resultMapChart4">
+			select province,count(*) num from user_log group by province order by count(*) desc
+    </select>
+
+
+</mapper>
